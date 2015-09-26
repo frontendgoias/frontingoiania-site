@@ -95,6 +95,131 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    background: #F5F0DC;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25em;
+    font-weight: 200;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Source Code Pro', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.section {
+    padding: 50px 0;
+}
+
+.section-blue {
+    background: #28D7C8;
+}
+
+.section-blue h2 {
+    color: #F04B96;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+    text-align: justify;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.img-responsive {
+    display:block;
+    height: auto;
+    max-width: 100%;
+}
+
+.btn {
+    background: #F5E65A;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    color: #333;
+    display: inline-block;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 20px;
+    padding: 10px 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: rgba(245, 230, 90, .8);
+}
+
+.btn.btn-primary {
+    background: #F5F0DC;
+    color: #333;
+}
+
+.btn.btn-primary:hover {
+    background: #E5D9C3;
+}
+
+.btn + .btn {
+    margin-left: 10px;
+}
+
+#home {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f04b96+50,f5e65a+100 */
+    background: #f04b96; /* Old browsers */ /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#f04b96), color-stop(100%,#f5e65a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f04b96 50%,#f5e65a 100%); /* Chrome10+,Safari5.1+ */ /* Opera 11.10+ */ /* IE10+ */
+    background: -webkit-linear-gradient(top, #f04b96 50%, #f5e65a 100%);
+    background: linear-gradient(to bottom,  #f04b96 50%,#f5e65a 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f04b96', endColorstr='#f5e65a',GradientType=0 ); /* IE6-9 */
+}
+
+#home .container {
+    color: #F5F0DC;
+    max-width: 560px;
+    padding: 100px 0;
+}
+
+#sobre .container{
+    max-width: 640px;
+}
+
+.underline {
+    border-bottom:1px solid #fff;
+    width: 180px;
+    margin: 40px auto;
+}
+
+.underline::after {
+    content: "";
+    width: 80%;
+    height: 1px;
+    border-bottom: 1px solid #fff;
+    display: block;
+    padding-bottom: 5px;
+    margin: 0 auto -5px;
+}
+
+.section .underline {
+    border-bottom: 1px solid #333;
+    margin: 20px auto 40px;
+}
+
+.section .underline::after {
+    border-bottom: 1px solid #333;
+}
+
+.section-blue .underline {
+    border-bottom-color: #F04B96;
+}
+
+.section-blue .underline::after {
+    border-bottom-color: #F04B96;
+}
 
 
 
@@ -102,14 +227,49 @@ textarea {
 
 
 
+/* ==========================================================================
+   Map
+   ========================================================================== */
 
+.static-img {
+    display: block;
+}
 
+iframe {
+    max-width: 100%;
+}
 
+/* From http://codepen.io/chriscoyier/full/kycDp */
+.map-container {
+    width: 100%;
+    margin: 0 auto;
+    height: 0;
+    padding-top: 38%;
+    position: relative;
+    display: none;
+    /* Hide for small screens */
+}
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    /* had to specify height/width */
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
 
+/* Medium Screens */
+@media all and (min-width: 34.375em) {
+    .map-container {
+        display: block;
+    }
 
-
-
-
+    .static-img {
+        display: none;
+    }
+}
 
 /* ==========================================================================
    Helper classes
