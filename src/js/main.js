@@ -2,41 +2,46 @@
  * Map
  */
 
-$(document).ready(function(){
-    buildMap();
-});
-
-var sw = document.body.clientWidth,
-    bp = 550,
-    $map = $('.map');
-var static = "https://www.google.com.br/maps/place/CCBEU+Matriz+-+Novo+Pr%C3%A9dio/@-16.7099504,-49.2756792,15z/data=!4m2!3m1!1s0x0:0x565fae7466b637ef";
-var embed = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14812.721960038562!2d-49.27567920000003!3d-16.70995041466559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x565fae7466b637ef!2sCCBEU+Matriz+-+Novo+Pr%C3%A9dio!5e0!3m2!1spt-BR!2sbr!4v1443205060367" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
+var $map = $('#map'), $googleMap;
 
 function buildMap() {
-    if(sw>bp) { //If Large Screen
-        if($('.map-container').length < 1) { //If map doesn't already exist
-            buildEmbed();
+    $('<div class="map-container"/>').prependTo($map);
+    var $node = $('#map .map-container')[0];
+
+    $googleMap = new google.maps.Map($node, {
+        center: {lat: -16.707196, lng: -49.275969},
+        zoom: 15,
+        scrollwheel: false,
+        streetViewControl: false,
+        mapTypeControl: false
+    });
+
+    var service = new google.maps.places.PlacesService($googleMap);
+    service.getDetails({ placeId: 'ChIJ9UUMqi_xXpMR7ze2ZnSuX1Y' }, function(place, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: $googleMap,
+                position: place.geometry.location,
+                title: 'CCBEU Matriz - Novo Prédio'
+            });
+
+            setInfoWindow = function() {
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                '<br>' + place.formatted_address);
+                infowindow.open($googleMap, marker);
+            };
+            google.maps.event.addListener(marker, 'click', function() {
+                setInfoWindow();
+            });
+            setInfoWindow();
         }
-    } else {
-        if($('.static-img').length < 1) { //If static image doesn't exist
-            buildStatic();
-        }
-    }
+    });
 };
 
-function buildEmbed() { //Build iframe view
-    $('<div class="map-container"/>').html(embed).prependTo($map);
-};
-
-function buildStatic() { //Build static map
-    var mapLink = $('.map-link').attr('href'),
-        $img = $('<img class="static-img" />').attr('src',static);
-    $('<a/>').attr('href',mapLink).html($img).prependTo($map);
-}
-
-$(window).resize(function() {
-    sw = document.body.clientWidth;
-    buildMap();
-    google.maps.event.trigger(map, "resize");
+$(document).ready(function(){
+    $(window).resize(function() {
+        jQuery("#map .map-container").remove();
+        buildMap();
+    });
 });
-

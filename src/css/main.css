@@ -181,6 +181,13 @@ h1, h2, h3, h4 {
     padding: 100px 0;
 }
 
+@media all and (max-width: 550px) {
+    #home .container {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+}
+
 #sobre .container{
     max-width: 640px;
 }
@@ -241,10 +248,8 @@ iframe {
     width: 100%;
     margin: 0 auto;
     height: 0;
-    padding-top: 38%;
+    padding-top: 35%;
     position: relative;
-    display: none;
-    /* Hide for small screens */
 }
 .map-container iframe {
     width: 100%;
@@ -257,14 +262,9 @@ iframe {
     bottom: 0;
 }
 
-/* Medium Screens */
-@media all and (min-width: 34.375em) {
+@media all and (max-width: 550px) {
     .map-container {
-        display: block;
-    }
-
-    .static-img {
-        display: none;
+        padding-top: 70%;
     }
 }
 
