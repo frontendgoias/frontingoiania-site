@@ -1,7 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    webserver = require('gulp-webserver');
 
 // Load all gulp plugins automatically
 // and attach them to the `plugins` object
@@ -165,6 +166,15 @@ gulp.task('build', function (done) {
         ['clean'],
         'copy',
     done);
+});
+
+gulp.task('webserver', function() {
+  gulp.src('./dist/')
+    .pipe(webserver({
+      port: process.env.PORT || 4000,
+      path: '/',
+      open: false
+    }));
 });
 
 gulp.task('default', ['build']);
